@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年いち家計簿 プライバシーポリシー | kamekame apps</title>
+    <link rel="icon" href="images/site_icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --turtle-blue: #a2d2ff;
+            --turtle-pink: #efbbcf;
+            --bg-soft: #fdfbfd;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-soft);
+            color: #4a4a4a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* カメの泳ぐアニメーション */
+        .turtle-float {
+            animation: swim 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.05));
+        }
+
+        @keyframes swim {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        /* 背景の泡 */
+        .bubble {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bubbles Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="bubble w-32 h-32 top-20 left-10 opacity-30"></div>
+        <div class="bubble w-64 h-64 bottom-20 right-[-50px] opacity-20"></div>
+        <div class="bubble w-16 h-16 top-1/2 left-1/4 opacity-40"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 flex-grow z-10 max-w-4xl">
+        <div class="glass-card rounded-[2rem] p-8 md:p-12">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center border-b border-gray-100 pb-6 tracking-wider">
+                年いち家計簿 プライバシーポリシー
+            </h1>
+            
+            <div class="space-y-8 text-gray-600 leading-relaxed text-sm md:text-base">
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第1条（利用者情報の取得）</h2>
+                    <p>本アプリは、ユーザーの個人情報（氏名、住所、電話番号、メールアドレス等）を当方が能動的に取得することはありません。ユーザー登録も不要でご利用いただけます。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第2条（画像データ、PDFファイルおよびOCR結果の取り扱い）</h2>
+                    <p>本アプリは、通帳等の内容を読み取るために、以下の方法で画像またはPDFファイルを取り込みます。</p>
+                    <ul class="list-disc pl-5 space-y-2 mt-3">
+                        <li>端末のカメラで撮影した画像</li>
+                        <li>端末の写真ライブラリからユーザーが選択した画像</li>
+                        <li>端末内からユーザーが選択したPDFファイル</li>
+                    </ul>
+                    <p class="mt-3">これらの画像、PDFファイルおよびOCRの解析結果は、原則としてユーザーの端末内でのみ処理・保存され、当方のサーバーへ送信・保存されることはありません。</p>
+                    <p class="text-xs text-gray-400 mt-2">※端末のOSや設定、将来的な機能追加により外部サービスを利用する場合は、本ポリシーを改定して明記します。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第3条（情報の利用目的）</h2>
+                    <p>取得されたデータは、ユーザー自身の家計管理を補助する目的でのみ利用されます。それ以外の目的で利用されることはありません。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第4条（第三者提供）</h2>
+                    <p>当方は、ユーザーの個人情報を取得しないため、ユーザーの個人情報を第三者に提供することはありません。外部サービスを利用する場合は事前に明示します。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第5条（課金機能・外部サービスの利用）</h2>
+                    <p>当方は、将来的に課金機能その他の外部サービスを導入する可能性があります。その場合、決済処理その他のために外部サービスを利用し、追加の情報の取り扱いが発生するときは、本ポリシーを改定し、その内容を明記します。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第6条（プライバシーポリシーの変更）</h2>
+                    <p>当方は必要と判断した場合には、本ポリシーをユーザーに通知することなく変更することができます。変更後のポリシーは本ページに掲載した時点で効力を生じます。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第7条（お問い合わせ）</h2>
+                    <p class="mb-3">本ポリシーに関するお問い合わせは以下のフォームよりお願いいたします。</p>
+                    <a href="https://forms.gle/by6MeiEp4n4jR45V8" class="inline-flex items-center gap-1.5 text-[#a2d2ff] hover:text-[#efbbcf] font-medium transition underline" target="_blank" rel="noopener noreferrer">
+                        お問い合わせフォーム
+                    </a>
+                </section>
+
+                <section class="pt-6 border-t border-gray-100">
+                    <h2 class="text-base font-bold text-gray-800 mb-2">更新履歴</h2>
+                    <ul class="list-disc pl-5 space-y-1 text-xs text-gray-400">
+                        <li>2026年2月10日：初版制定</li>
+                        <li>2026年4月25日：画像・PDFファイル取り込み機能に関する記載を更新</li>
+                        <li>2026年4月25日：将来的な課金機能の導入に関する記載を更新</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center relative mt-auto border-t border-gray-100/50 bg-white/20 backdrop-blur-sm">
+        <a href="index.html" class="turtle-float inline-block w-10 h-10 mb-4 opacity-40 hover:opacity-80 transition">
+            <img src="images/site_icon.png" alt="Turtle Icon" class="w-full h-full">
+        </a>
+        <div class="text-[0.6rem] tracking-[0.4em] text-gray-400 uppercase">KameKameApps</div>
+        <p class="text-[0.6rem] text-gray-300 mt-2">© 2026 kamekameko</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ねつログ 利用規約 | kamekame apps</title>
+    <link rel="icon" href="images/site_icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --turtle-blue: #a2d2ff;
+            --turtle-pink: #efbbcf;
+            --bg-soft: #fdfbfd;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-soft);
+            color: #4a4a4a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* カメの泳ぐアニメーション */
+        .turtle-float {
+            animation: swim 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.05));
+        }
+
+        @keyframes swim {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        /* 背景の泡 */
+        .bubble {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bubbles Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="bubble w-32 h-32 top-20 left-10 opacity-30"></div>
+        <div class="bubble w-64 h-64 bottom-20 right-[-50px] opacity-20"></div>
+        <div class="bubble w-16 h-16 top-1/2 left-1/4 opacity-40"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 flex-grow z-10 max-w-4xl">
+        <div class="glass-card rounded-[2rem] p-8 md:p-12">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center border-b border-gray-100 pb-6 tracking-wider">
+                ねつログ 利用規約
+            </h1>
+            
+            <div class="space-y-8 text-gray-600 leading-relaxed text-sm md:text-base">
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第1条（はじめに）</h2>
+                    <p>この利用規約（以下「本規約」といいます）は、kamekame apps（以下「当方」といいます）が提供するスマートフォン用アプリケーション「ねつログ」（以下「本アプリ」といいます）の利用条件を定めるものです。本アプリを利用される皆様（以下「ユーザー」といいます）には、本規約に従って本アプリをご利用いただきます。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第2条（利用登録）</h2>
+                    <p>本アプリは、ユーザー登録を行うことなく直ちにご利用いただけます。入力されたデータは、原則としてユーザーの端末内に保存されます。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第3条（免責事項）</h2>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>本アプリは、体温の記録・管理を補助するものであり、医療機器ではありません。本アプリの記録結果に基づく医療判断については、必ず医師の診断を仰いでください。</li>
+                        <li>本アプリの利用により、または利用できなかったことによりユーザーに生じた損害について、当方は一切の責任を負わないものとします。</li>
+                        <li>端末の故障、紛失、アプリの削除等によりデータが消失した場合、当方はその復旧の責任を負いません。</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第4条（禁止事項）</h2>
+                    <p class="mb-2">ユーザーは、本アプリの利用にあたり、以下の行為をしてはなりません。</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>法令または公序良俗に違反する行為</li>
+                        <li>本アプリの運営を妨害するおそれのある行為</li>
+                        <li>本アプリのプログラムを不正に解析・改変する行為</li>
+                        <li>その他、当方が不適切と判断する行為</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第5条（広告の掲載）</h2>
+                    <p>当方は、本アプリ上に、当方または第三者の広告を掲載することができるものとします。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第6条（利用規約の変更）</h2>
+                    <p>当方は、必要と判断した場合には、ユーザーに通知することなくいつでも本規約を変更することができるものとします。なお、本規約の変更後、本アプリの利用を開始した場合には、当該ユーザーは変更後の規約に同意したものとみなします。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-[#a2d2ff] pl-3">第7条（お問い合わせ）</h2>
+                    <p class="mb-3">本アプリに関するお問い合わせは、以下のフォームよりお願いいたします。</p>
+                    <a href="https://forms.gle/nEtPxELHVyDccQmR7" class="inline-flex items-center gap-1.5 text-[#a2d2ff] hover:text-[#efbbcf] font-medium transition underline" target="_blank" rel="noopener noreferrer">
+                        お問い合わせフォーム
+                    </a>
+                </section>
+
+                <section class="pt-6 border-t border-gray-100">
+                    <h2 class="text-base font-bold text-gray-800 mb-2">更新履歴</h2>
+                    <ul class="list-disc pl-5 space-y-1 text-xs text-gray-400">
+                        <li>2026年1月4日：初版制定</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center relative mt-auto border-t border-gray-100/50 bg-white/20 backdrop-blur-sm">
+        <a href="index.html" class="turtle-float inline-block w-10 h-10 mb-4 opacity-40 hover:opacity-80 transition">
+            <img src="images/site_icon.png" alt="Turtle Icon" class="w-full h-full">
+        </a>
+        <div class="text-[0.6rem] tracking-[0.4em] text-gray-400 uppercase">KameKameApps</div>
+        <p class="text-[0.6rem] text-gray-300 mt-2">© 2026 kamekameko</p>
+    </footer>
+
+</body>
+</html>

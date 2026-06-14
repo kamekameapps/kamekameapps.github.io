@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kamekame apps</title>
+    <link rel="icon" href="images/site_icon.png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Noto Sans JP', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* アイコンの浮遊アニメーション */
+        @keyframes gentleFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float {
+            animation: gentleFloat 5s ease-in-out infinite;
+        }
+
+        /* スクロール時のフェードイン（下からふわっと） */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 詳細モーダル背景 */
+        .modal-backdrop {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 詳細モーダルシート */
+        .modal-sheet {
+            transform: translateY(40px) scale(0.98);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-sheet.active {
+            transform: translateY(0) scale(1);
+        }
+
+        /* スクロールバー非表示 (スクショ用) */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* スクショ画像の解像度・画質改善 */
+        .screenshot-img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+    </style>
+</head>
+<body class="bg-[#FCFCFD] text-[#1E2022] selection:bg-slate-100 overflow-x-hidden">
+
+    <!-- メインコンテンツ領域 -->
+    <main class="min-h-screen flex flex-col justify-between">
+        
+        <!-- ヒーローセクション（ファーストビュー） -->
+        <section class="h-[80vh] flex flex-col items-center justify-center text-center px-6 relative">
+            <!-- ふわふわ浮かぶメインアイコン -->
+            <div class="relative w-40 h-40 md:w-48 md:h-48 mb-6 animate-float">
+                <img id="main-icon" src="images/site_icon.png" alt="App Icon" class="w-full h-full object-contain" onerror="handleImageError(this)">
+            </div>
+
+            <!-- 最小限のタイトル -->
+            <div class="space-y-2">
+                <h1 class="text-xl md:text-2xl font-medium tracking-wider text-slate-800">kamekameapps</h1>
+                <p class="text-xs tracking-widest text-slate-400 uppercase">portfolio</p>
+            </div>
+
+            <!-- 下スクロールを促すシンプルな矢印 -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-40">
+                <i data-lucide="chevron-down" class="w-5 h-5 animate-bounce"></i>
+            </div>
+        </section>
+
+        <!-- アプリケーション一覧（アイコンとタイトルのみがふわっと出現） -->
+        <section class="max-w-4xl mx-auto w-full px-8 pb-32">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 sm:gap-16 justify-items-center max-w-2xl mx-auto">
+                
+                <!-- アプリ 1: 年いち家計簿 -->
+                <div class="reveal flex flex-col items-center group cursor-pointer" onclick="openAppDetails(0)">
+                    <div class="w-24 h-24 rounded-[1.6rem] bg-white flex items-center justify-center shadow-[0_8px_25px_rgba(0,0,0,0.04)] border border-slate-100 overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] select-none">
+                        <img src="images/yearly_kakeibo_icon.PNG" alt="年いち家計簿" class="w-full h-full object-cover">
+                    </div>
+                    <span class="mt-4 text-sm font-medium text-slate-700 tracking-wide transition-colors group-hover:text-slate-900">年いち家計簿</span>
+                    <span class="text-[10px] text-slate-400 mt-1 font-light tracking-wide">年に一度のシンプルな家計管理</span>
+                </div>
+
+                <!-- アプリ 2: ねつログ -->
+                <div class="reveal flex flex-col items-center group cursor-pointer" onclick="openAppDetails(1)">
+                    <div class="w-24 h-24 rounded-[1.6rem] bg-white flex items-center justify-center shadow-[0_8px_25px_rgba(0,0,0,0.04)] border border-slate-100 overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] select-none">
+                        <img src="images/netsulog_icon.png" alt="ねつログ" class="w-full h-full object-cover">
+                    </div>
+                    <span class="mt-4 text-sm font-medium text-slate-700 tracking-wide transition-colors group-hover:text-slate-900">ねつログ</span>
+                    <span class="text-[10px] text-slate-400 mt-1 font-light tracking-wide">家族の体温記録アプリ</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- シンプルな最小限フッター -->
+        <footer class="py-12 border-t border-slate-50 text-center">
+            <p class="text-[10px] text-slate-300 tracking-widest uppercase">&copy; 2026 kamekameapps.</p>
+        </footer>
+
+    </main>
+
+    <!-- 洗練された詳細モーダル -->
+    <div id="details-modal" class="modal-backdrop fixed inset-0 bg-slate-950/20 backdrop-blur-md z-50 flex items-center justify-center p-4" onclick="closeAppDetailsOnBackdrop(event)">
+        
+        <!-- モーダル本体 (少し横幅を持たせて、スクショが綺麗に収まる max-w-xl に変更) -->
+        <div class="modal-sheet bg-white w-full max-w-xl rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-slate-50 max-h-[90vh]">
+            
+            <!-- 閉じるボタン -->
+            <div class="flex justify-end p-5 pb-0">
+                <button onclick="closeAppDetails()" class="p-2 rounded-full hover:bg-slate-50 text-slate-400 hover:text-slate-600 transition-colors">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- スクロール可能なコンテンツエリア -->
+            <div class="overflow-y-auto px-8 pb-10 flex flex-col items-center text-center space-y-6 no-scrollbar">
+                
+                <!-- アプリ情報 -->
+                <div id="modal-app-icon" class="w-20 h-20 rounded-[1.4rem] overflow-hidden flex items-center justify-center shadow-sm border border-slate-100 bg-white">
+                    <!-- 動的 -->
+                </div>
+                
+                <div class="space-y-1">
+                    <h3 id="modal-app-name" class="text-xl font-medium text-slate-800"><!-- 動的 --></h3>
+                    <p id="modal-app-subtitle" class="text-xs text-slate-400 font-medium tracking-wide"><!-- 動的 --></p>
+                </div>
+
+                <p id="modal-app-desc" class="text-slate-400 font-light leading-relaxed text-sm max-w-md">
+                    <!-- 動的 -->
+                </p>
+
+                <!-- 横スクロールスクリーンショットエリア (シンプルさを壊さない洗練されたレイアウト) -->
+                <div class="w-full space-y-2 pt-2">
+                    <div id="modal-screenshots" class="w-full flex space-x-3 overflow-x-auto pb-4 px-4 no-scrollbar snap-x snap-mandatory justify-start sm:justify-center">
+                        <!-- ここにJavaScriptでスクショ画像、またはモック風プレースホルダーが動的に生成されます -->
+                    </div>
+                </div>
+
+                <!-- 開発詳細 -->
+                <div class="w-full grid grid-cols-2 gap-4 py-4 border-t border-b border-slate-50 text-left text-xs">
+                    <div>
+                        <span class="block text-slate-400 mb-0.5">Technology</span>
+                        <span id="modal-app-tech" class="font-medium text-slate-700"><!-- 動的 --></span>
+                    </div>
+                    <div>
+                        <span class="block text-slate-400 mb-0.5">Release</span>
+                        <span id="modal-app-date" class="font-medium text-slate-700"><!-- 動的 --></span>
+                    </div>
+                </div>
+
+                <!-- App Store リンク -->
+                <div class="w-full flex justify-center">
+                    <a id="modal-link-store" href="https://www.apple.com/app-store/" target="_blank" rel="noopener" class="inline-flex items-center justify-center space-x-2 bg-slate-900 text-white px-6 py-2.5 rounded-full hover:bg-slate-400 transition-colors text-xs font-semibold tracking-wider">
+                        <i id="modal-store-icon" data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                        <span id="modal-store-text">App Store で表示</span>
+                    </a>
+                </div>
+
+                <!-- さりげないインフォメーションテキストリンク -->
+                <div class="flex items-center justify-center space-x-4 text-[11px] text-slate-400 font-light pt-2 w-full">
+                    <a id="modal-link-terms" href="#" target="_blank" rel="noopener" class="hover:text-slate-700 transition-colors">利用規約</a>
+                    <span class="text-slate-200 select-none">|</span>
+                    <a id="modal-link-privacy" href="#" target="_blank" rel="noopener" class="hover:text-slate-700 transition-colors">プライバシーポリシー</a>
+                    <span class="text-slate-200 select-none">|</span>
+                    <a id="modal-link-contact" href="#" target="_blank" rel="noopener" class="hover:text-slate-700 transition-colors">お問い合わせ</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // アプリデータ
+        const appsData = [
+            {
+                name: "年いち家計簿",
+                subtitle: "年に一度、家計を“確定”する。わが家の「おうち決算」アプリ",
+                desc: "年に一度、通帳データを入力するだけで、複数口座をまとめて年間収支を自動集計。「今年、いくら貯まったのか」「何にいくら使ったのか」を、ひと目で確認できる“おうち決算”ダッシュボードを提供します。",
+                tech: "Flutter / SQLite",
+                date: "2026.03",
+                themeClass: "from-[#C8E6C9] to-[#81C784]",
+                iconUrl: "images/yearly_kakeibo_icon.PNG",
+                appStoreUrl: "https://apps.apple.com/jp/app/%E5%B9%B4%E3%81%84%E3%81%A1%E5%AE%B6%E8%A8%88%E7%B0%BF-%E5%B9%B4%E3%81%AB%E4%B8%80%E5%BA%A6%E3%81%AE%E3%81%8A%E3%81%86%E3%81%A1%E6%B1%BA%E7%AE%97/id6759331765",
+                termsUrl: "yearly_kakeibo_terms.html",
+                privacyUrl: "yearly_kakeibo_privacy.html",
+                contactUrl: "https://forms.gle/by6MeiEp4n4jR45V8",
+                screenshots: [
+                    "images/yearly_kakeibo_screen1.PNG",
+                    "images/yearly_kakeibo_screen2.PNG",
+                    "images/yearly_kakeibo_screen3.PNG"
+                ]
+            },
+            {
+                name: "ねつログ",
+                subtitle: "家族の体温記録アプリ",
+                desc: "家族全員の体温を簡単に記録・管理。人の切替なしで体温一覧を表示＆簡単入力で体調管理がスムーズに。最大10名まで登録可能で、子育て世代に最適です。",
+                tech: "Flutter / SQLite",
+                date: "2026.01",
+                themeClass: "from-[#F5C6C3] to-[#E8A5A0]",
+                iconUrl: "images/netsulog_icon.png",
+                appStoreUrl: "https://apps.apple.com/jp/app/%E3%81%AD%E3%81%A4%E3%83%AD%E3%82%B0/id6757487739",
+                termsUrl: "netsulog_terms.html",
+                privacyUrl: "netsulog_privacy.html",
+                contactUrl: "https://forms.gle/nEtPxELHVyDccQmR7",
+                screenshots: [
+                    "images/netsulog_screen1.png",
+                    "images/netsulog_screen2.png",
+                    "images/netsulog_screen3.png"
+                ]
+            }
+        ];
+
+        // アイコン画像読み込みエラー時のフォールバック
+        function handleImageError(img) {
+            img.onerror = null;
+            const parent = img.parentNode;
+            const container = document.createElement('div');
+            container.className = "w-full h-full rounded-[1.8rem] bg-gradient-to-tr from-blue-300 via-indigo-200 to-purple-300 flex items-center justify-center text-5xl shadow-sm border border-white/50 select-none";
+            container.innerHTML = "🐢";
+            parent.replaceChild(container, img);
+        }
+
+        // 初期化処理
+        document.addEventListener("DOMContentLoaded", () => {
+            // Lucideアイコン適用
+            lucide.createIcons();
+
+            // スクロール時のふわっとした表示設定 (Intersection Observer)
+            const reveals = document.querySelectorAll(".reveal");
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: "0px 0px -40px 0px"
+            });
+
+            reveals.forEach((el) => observer.observe(el));
+        });
+
+        // モーダル表示
+        const modal = document.getElementById('details-modal');
+        const modalSheet = modal.querySelector('.modal-sheet');
+
+        function openAppDetails(index) {
+            const data = appsData[index];
+            if (!data) return;
+
+            const iconEl = document.getElementById('modal-app-icon');
+            iconEl.className = "w-20 h-20 rounded-[1.4rem] overflow-hidden flex items-center justify-center shadow-sm border border-slate-100 bg-white";
+            iconEl.innerHTML = `<img src="${data.iconUrl}" alt="${data.name}" class="w-full h-full object-cover">`;
+
+            document.getElementById('modal-app-name').innerText = data.name;
+            document.getElementById('modal-app-subtitle').innerText = data.subtitle;
+            document.getElementById('modal-app-desc').innerText = data.desc;
+            document.getElementById('modal-app-tech').innerText = data.tech;
+            document.getElementById('modal-app-date').innerText = data.date;
+
+            // スクショエリアの動的生成
+            const screenshotContainer = document.getElementById('modal-screenshots');
+            screenshotContainer.innerHTML = '';
+
+            // ユーザーが実画像をまだ設定していない場合
+            if (!data.screenshots || data.screenshots.length === 0) {
+                // 美しいiPhoneアスペクト比(9:16.5)のUIモックプレースホルダーを3つ作成
+                for (let i = 1; i <= 3; i++) {
+                    const mock = document.createElement('div');
+                    mock.className = `w-28 h-52 sm:w-32 sm:h-60 rounded-[4px] bg-gradient-to-b ${data.themeClass} opacity-95 flex-shrink-0 flex flex-col justify-between p-3 text-white snap-center shadow-md border border-white/10`;
+                    mock.innerHTML = `
+                        <div class="flex justify-between items-center text-[7px] opacity-75">
+                            <span>9:41</span>
+                            <div class="flex space-x-0.5">
+                                <span class="w-1 h-1 bg-white rounded-full"></span>
+                                <span class="w-1.5 h-1 bg-white rounded-full"></span>
+                            </div>
+                        </div>
+                        <div class="text-center space-y-1 my-auto">
+                            <span class="text-xl">🐢</span>
+                            <p class="text-[8px] font-medium tracking-wide">Screen ${i}</p>
+                        </div>
+                        <div class="h-1 w-10 bg-white/40 rounded-full mx-auto"></div>
+                    `;
+                    screenshotContainer.appendChild(mock);
+                }
+            } else {
+                // 実際の画像が追加された場合の処理
+                data.screenshots.forEach(src => {
+                    if (src === "coming-soon") {
+                        const mock = document.createElement('div');
+                        mock.className = `w-28 h-52 sm:w-32 sm:h-60 rounded-[4px] bg-slate-100 flex-shrink-0 flex flex-col justify-center items-center text-slate-400 snap-center shadow-md border border-slate-200/50 text-center font-bold text-xs select-none space-y-2`;
+                        mock.innerHTML = `
+                            <div class="text-lg">⏳</div>
+                            <div>Coming Soon</div>
+                        `;
+                        screenshotContainer.appendChild(mock);
+                    } else {
+                        const img = document.createElement('img');
+                        img.src = src;
+                        img.alt = `${data.name} screenshot`;
+                        img.className = "w-28 h-52 sm:w-32 sm:h-60 rounded-[4px] object-cover flex-shrink-0 snap-center shadow-md border border-slate-100 screenshot-img";
+                        screenshotContainer.appendChild(img);
+                    }
+                });
+            }
+
+            // App Storeリンクの設定
+            const storeLink = document.getElementById('modal-link-store');
+            const storeText = document.getElementById('modal-store-text');
+            const storeIcon = document.getElementById('modal-store-icon');
+            if (data.appStoreUrl && data.appStoreUrl !== "#") {
+                storeLink.href = data.appStoreUrl;
+                storeLink.style.pointerEvents = 'auto';
+                storeLink.classList.remove('bg-slate-300', 'cursor-default');
+                storeLink.classList.add('bg-slate-900', 'hover:bg-slate-400');
+                storeText.innerText = "App Store で表示";
+                if (storeIcon) storeIcon.style.display = 'inline-block';
+            } else {
+                storeLink.href = "#";
+                storeLink.style.pointerEvents = 'none';
+                storeLink.classList.remove('bg-slate-900', 'hover:bg-slate-400');
+                storeLink.classList.add('bg-slate-300', 'cursor-default');
+                storeText.innerText = "リリース準備中";
+                if (storeIcon) storeIcon.style.display = 'none';
+            }
+
+            // さりげないリンクの設定
+            document.getElementById('modal-link-terms').href = data.termsUrl;
+            document.getElementById('modal-link-privacy').href = data.privacyUrl;
+            document.getElementById('modal-link-contact').href = data.contactUrl;
+
+            // モーダル表示アニメーション
+            modal.classList.add('active');
+            setTimeout(() => {
+                modalSheet.classList.add('active');
+            }, 50);
+
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeAppDetails() {
+            modalSheet.classList.remove('active');
+            setTimeout(() => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        function closeAppDetailsOnBackdrop(event) {
+            if (event.target === modal) {
+                closeAppDetails();
+            }
+        }
+    </script>
+</body>
+</html>

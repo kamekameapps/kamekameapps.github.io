@@ -155,7 +155,7 @@
             <div class="overflow-y-auto px-8 pb-10 flex flex-col items-center text-center space-y-6 no-scrollbar">
                 
                 <!-- アプリ情報 -->
-                <div id="modal-app-icon" class="w-20 h-20 rounded-[1.4rem] overflow-hidden flex items-center justify-center shadow-sm border border-slate-100 bg-white">
+                <div id="modal-app-icon" class="w-20 h-20 shrink-0 rounded-[1.4rem] overflow-hidden flex items-center justify-center shadow-sm border border-slate-100 bg-white">
                     <!-- 動的 -->
                 </div>
                 
@@ -290,7 +290,7 @@
             if (!data) return;
 
             const iconEl = document.getElementById('modal-app-icon');
-            iconEl.className = "w-20 h-20 rounded-[1.4rem] overflow-hidden flex items-center justify-center shadow-sm border border-slate-100 bg-white";
+            iconEl.className = "w-20 h-20 shrink-0 rounded-[1.4rem] overflow-hidden flex items-center justify-center shadow-sm border border-slate-100 bg-white";
             iconEl.innerHTML = `<img src="${data.iconUrl}" alt="${data.name}" class="w-full h-full object-cover">`;
 
             document.getElementById('modal-app-name').innerText = data.name;
